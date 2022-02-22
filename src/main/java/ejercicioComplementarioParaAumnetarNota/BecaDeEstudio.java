@@ -6,9 +6,13 @@ public class BecaDeEstudio {
     public BecaDeEstudio(){
         utils = new Utils();
     }
-    
 
-    public String recomendacoinBeca(int ci){
+    public BecaDeEstudio(Utils u){
+        utils = u;
+    }
+
+
+    public String recomendacionBeca(int ci){
         String m = "";
         if(Helpers.applicaBeca(ci)){
             if(utils.getNota(ci)>=90){

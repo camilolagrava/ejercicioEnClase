@@ -15,7 +15,12 @@ public class BecaDeEstudioTest {
 
     @ParameterizedTest
     @CsvSource({
-        "123456"
+            "123456,false,100.0,EL ESTUDIANTE NO CURSO AUN EL 60% DE LAS MATERIAS",
+            "123456,true,85.0,NO APLICA A BECA POR PROMEDIO ACADEMICO",
+            "123456,true,90.0,SI APLICA BECA",
+            "123456,true,95.0,SI APLICA BECA",
+            "123456,true,100.0,SI APLICA BECA",
+
     })
     public void verifyTest(int ci, boolean b, double d ,String expectedResult){
         Mockito.when(uMock.getNota(ci)).thenReturn(d);
@@ -23,6 +28,8 @@ public class BecaDeEstudioTest {
 
         BecaDeEstudio correct = new BecaDeEstudio(uMock);
         String actualResult = correct.recomendacionBeca(ci);
+
+
         Assertions.assertEquals(expectedResult,actualResult,"Error, un errooooor!");
 
         hMock.close();
